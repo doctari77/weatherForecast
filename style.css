@@ -1,0 +1,45 @@
+.jumbotron {
+    background-color: black;
+    color: aliceblue;
+}
+
+.display-4 {
+    text-align: center;
+}
+
+ .container {
+     background-color: #F8F9FA;
+ }   
+    
+#currentWeather {
+
+    width: 100%;
+}
+.card {
+    display:inline-block;
+    background-color: #F8F9FA;
+}
+
+.card-body {
+    display:inline-block;
+
+}
+
+#topCard {
+    width: 100%;
+
+}
+
+.card bg-primary {
+    
+}
+
+footer {
+    position: fixed;
+    height: 185px;
+    bottom: 0;
+    width: 100%;
+    background-color: #F8F9FA;
+}
+}
+
