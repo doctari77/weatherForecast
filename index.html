@@ -24,24 +24,10 @@
           <button id="citySearch" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </nav>
- <!--     <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush history">
-          <li class="list-group-item city1">Cras justo odio</li>
-          <li class="list-group-item city2">Dapibus ac facilisis in</li>
-          <li class="list-group-item city3">Vestibulum at eros</li>
-          <li class="list-group-item city4">Cras justo odio</li>
-          <li class="list-group-item city5">Dapibus ac facilisis in</li>
-          <li class="list-group-item city6">Vestibulum at eros</li>        
-          <li class="list-group-item city7">Dapibus ac facilisis in</li>
-          <li class="list-group-item city8">Vestibulum at eros</li>
-        </ul>
-      </div>
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-        
-         </div> -->
-
+</ul>
+</div>
           <div id="currentWeather">
           <div class="col-md-9" style="max-width: 760px;">
             <div class="card-body">
@@ -55,12 +41,13 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
+
   function cityHistory(text){
     var list = $("<li>").addClass("list-group-item").text(text)
 $(".history").append(list)
   }
   function WeatherFunction (searchVal){
-    
+    forecastFunction(searchVal)
   
   
   var APIKey = "166a433c57516f51dfab1f7edaed8413";
@@ -80,7 +67,7 @@ $(".history").append(list)
 
 
         if (searchHistory.indexOf(searchVal) === -1) {
-          searchHistory.push(searchValue);
+          searchHistory.push(searchVal);
           window.localStorage.setItem("pastHistory", JSON.stringify(searchHistory));
           cityHistory(searchVal);
         }
@@ -99,7 +86,7 @@ $(".history").append(list)
       });
   }
   function forecastFunction (searchVal){
-  
+  $(".card-deck").empty()
   var day1
   var day2
   var day3
@@ -134,7 +121,7 @@ console.log(response.city)
           var title = $("<h5>").addClass("card-title").text(new Date(response.list[i].dt_txt).toLocaleDateString());
           var max = $("<p>").addClass("card-text").text(response.list[i].main.temp_max)
            $(".card-deck").append(card.append(body.append(title, max)))
-          //var deck = ("<div>").addClass("card-deck card-body card-text").append(title, max)
+         
 
       }
       }
@@ -144,7 +131,9 @@ console.log(response.city)
       $("#citySearch").on("click", function(event) {
           event.preventDefault()
           var searchVal = $(".searchField").val()
+          WeatherFunction(searchVal)
 
+      })
 var searchHistory = window.localStorage.getItem("pastSearch")||[]
 if (searchHistory.length > 0) {
     WeatherFunction(searchHistory[searchHistory.length-1]);
@@ -152,40 +141,14 @@ if (searchHistory.length > 0) {
   for (var i = 0; i < searchHistory.length; i++) {
     cityHistory(searchHistory[i]);
   }
-WeatherFunction(searchVal)
-forecastFunction(searchVal)
 
-      })
 
   </script>
                
 <div>
     
   <div class="card-deck">
-    <!--visual of what needs to be done 
-    <div class="card bg-danger day1">
-      <div class="card-body text-center">
-        <p class="card-text"></p>
-      </div>
-    </div>
-    <div class="card bg-primary day2">
-      <div class="card-body text-center">
-        <p class="card-text">Some text inside the second card</p>
-      </div>
-    </div>
-    <div class="card bg-primary day3">
-      <div class="card-body text-center">
-        <p class="card-text">Some text inside the third card</p>
-      </div>
-    </div>
-    <div class="card bg-primary day4">
-      <div class="card-body text-center">
-        <p class="card-text">Some text inside the fourth card</p>
-      </div>
-    </div>
-    <div class="card bg-primary">
-      <div class="card-body text-center day5">
-        <p class="card-text">Some text inside the fourth card</p>-->
+  
               </div>
   </div>
  </div>
