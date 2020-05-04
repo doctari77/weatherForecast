@@ -3,6 +3,12 @@
     color: aliceblue;
 }
 
+.body {
+    background-color: #F8F9FA;
+}
+
+
+
 .display-4 {
     text-align: center;
 }
@@ -12,9 +18,12 @@
  }   
     
 #currentWeather {
-
-    width: 100%;
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
 }
+  
+
 .card {
     display:inline-block;
     background-color: #F8F9FA;
@@ -26,20 +35,19 @@
 }
 
 #topCard {
-    width: 100%;
-
+    margin: 50%;
+    width: 70%;
+    background-color: #F8F9FA;
 }
 
-.card bg-primary {
-    
-}
+
 
 footer {
     position: fixed;
-    height: 185px;
+    height: 105px;
     bottom: 0;
     width: 100%;
     background-color: #F8F9FA;
 }
-}
+
 

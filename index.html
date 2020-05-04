@@ -1,185 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css"> 
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
 </head>
+
 <body>
-    <div class="jumbotron">
-  <h1 class="display-4">Weather Dashboard</h1>
+  <div class="jumbotron">
+    <h1 class="display-4">Weather Dashboard</h1>
     <hr class="my-1">
-    </div>
-    <div class="container">
-        <br>
-    <div id="  SearchField" class=" row S4C">
-    <H3>Search for a City:</H3>    
-    </div>
-    <div class = "col" md-3></div>
-    <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-          <input class="form-control mr-sm-1 searchField" type="search" placeholder="Search" aria-label="Search" >
-          <button id="citySearch" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </nav>
-      <div class="card" style="width: 18rem;">
-        <ul class="list-group list-group-flush history">
-</ul>
-</div>
-          <div id="currentWeather">
-          <div class="col-md-9" style="max-width: 760px;">
-            <div class="card-body">
-              <p class="card-text"></p>
-              <p class="card-text"><small class="text-muted"></small></p>
-              <div class="city"></div>
-  <div class="wind"></div>
-  <div class="humidity"></div>
-  <div class="temp"></div>
-  <div class="tempF"></div> 
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript">
-
-  function cityHistory(text){
-    var list = $("<li>").addClass("list-group-item").text(text)
-$(".history").append(list)
-  }
-  function WeatherFunction (searchVal){
-    forecastFunction(searchVal)
-  
-  
-  var APIKey = "166a433c57516f51dfab1f7edaed8413";
-
-  var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
-      "q=" + searchVal + "&appid=" + APIKey;
- + "&units=imperial"
-
-  
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-      .then(function(response) {
-
-        
-
-
-        if (searchHistory.indexOf(searchVal) === -1) {
-          searchHistory.push(searchVal);
-          window.localStorage.setItem("pastHistory", JSON.stringify(searchHistory));
-          cityHistory(searchVal);
-        }
-        $(".city").html("<h1>" + response.name + " Weather Details</h1>");
-        $(".wind").text("Wind Speed: " + response.wind.speed);
-        $(".humidity").text("Humidity: " + response.main.humidity);
-        
-      
-        var tempF = (response.main.temp - 273.15) * 1.80 + 32;
-
-      
-        $(".temp").text("Temperature (K) " + response.main.temp);
-        $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
-
-      
-      });
-  }
-  function forecastFunction (searchVal){
-  $(".card-deck").empty()
-  var day1
-  var day2
-  var day3
-  var day4 
-  var day5
-  
-  var APIKey = "166a433c57516f51dfab1f7edaed8413";
-
-  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" +
-      "q=" + searchVal + "&appid=" + APIKey;
- + "&units=imperial"
-
-  
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-      .then(function(response) {
-
-        
-
-console.log(response)
-console.log(response.city)
-
-      for (var i=0; i<response.list.length; i++){
-        
-        if(response.list[i].dt_txt.indexOf("15:00:00") !== -1){ 
-          console.log(response.list[i])
-          var card=$('<div>').addClass("card bg-primary")
-          var body=$("<div>").addClass("card-body")
-
-          var title = $("<h5>").addClass("card-title").text(new Date(response.list[i].dt_txt).toLocaleDateString());
-          var max = $("<p>").addClass("card-text").text(response.list[i].main.temp_max)
-           $(".card-deck").append(card.append(body.append(title, max)))
-         
-
-      }
-      }
-      
-      });
-  }
-      $("#citySearch").on("click", function(event) {
-          event.preventDefault()
-          var searchVal = $(".searchField").val()
-          WeatherFunction(searchVal)
-
-      })
-var searchHistory = window.localStorage.getItem("pastSearch")||[]
-if (searchHistory.length > 0) {
-    WeatherFunction(searchHistory[searchHistory.length-1]);
-  }
-  for (var i = 0; i < searchHistory.length; i++) {
-    cityHistory(searchHistory[i]);
-  }
-
-
-  </script>
-               
-<div>
-    
-  <div class="card-deck">
-  
-              </div>
   </div>
- </div>
-    
-    
-    
-    
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script type="text/javascript">
-       
+  <div class="container">
+    <br>
+    <div id="  SearchField" class=" row S4C">
+      <H3>Search for a City:</H3>
+    </div>
+    <div class="col" md-9></div>
+    <nav class="navbar navbar-light bg-light">
+      <form class="form-inline">
+        <input class="form-control mr-sm-1 searchField" type="search" placeholder="Search" aria-label="Search">
+        <button id="citySearch" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </nav>
+    <div class="card" style="width: 18rem;">
+      <ul class="list-group list-group-flush history">
+      </ul>
+    </div>
+    <div id="currentWeather">
+      <div class="col-md-4" style="max-width: 760px;">
+        <div class="card-body">
+          <p class="card-text"></p>
+          <p class="card-text"><small class="text-muted"></small></p>
+          <div class="city"></div>
+          <div class="wind"></div>
+          <div class="humidity"></div>
+          <div class="temp"></div>
+          <div class="tempF"></div>
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <script type="text/javascript">
+
+            function cityHistory(text) {
+              var list = $("<li>").addClass("list-group-item").text(text)
+              $(".history").append(list)
+            }
+            function WeatherFunction(searchVal) {
+              forecastFunction(searchVal)
 
 
-      
+              var APIKey = "166a433c57516f51dfab1f7edaed8413";
 
-    
-  
-
-
-
+              var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
+                "q=" + searchVal + "&appid=" + APIKey;
+              + "&units=imperial"
 
 
+              $.ajax({
+                url: queryURL,
+                method: "GET"
+              })
+                .then(function (response) {
 
-     
-        
 
 
 
-</script>
+                  if (searchHistory.indexOf(searchVal) === -1) {
+                    searchHistory.push(searchVal);
+                    window.localStorage.setItem("pastHistory", JSON.stringify(searchHistory));
+                    cityHistory(searchVal);
+                  }
+                  $(".city").html("<h1>" + response.name + " Weather Details</h1>");
+                  $(".wind").text("Wind Speed: " + response.wind.speed);
+                  $(".humidity").text("Humidity: " + response.main.humidity);
+                  var image = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
+                  $('.city').append(image)
+
+                  var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+
+
+                  $(".temp").text("Temperature (K) " + response.main.temp);
+                  $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
+
+
+                });
+            }
+            function forecastFunction(searchVal) {
+              $(".card-deck").empty()
+              var day1
+              var day2
+              var day3
+              var day4
+              var day5
+
+              var APIKey = "166a433c57516f51dfab1f7edaed8413";
+
+              var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" + 
+                "q=" + searchVal + "&units=imperial" + "&appid=" + APIKey;
+              
+
+
+              $.ajax({
+                url: queryURL,
+                method: "GET"
+              })
+                .then(function (response) {
+
+
+
+                  console.log(response)
+                  console.log(response.city)
+
+                  for (var i = 0; i < response.list.length; i++) {
+
+                    if (response.list[i].dt_txt.indexOf("15:00:00") !== -1) {
+                      console.log(response.list[i])
+                      var card = $('<div>').addClass("card bg-primary")
+                      var body = $("<div>").addClass("card-body")
+                      var image = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png");                  
+                      var title = $("<h5>").addClass("card-title").text(new Date(response.list[i].dt_txt).toLocaleDateString());
+                      var max = $("<p>").addClass("card-text").text(response.list[i].main.temp_max)
+                      $(".card-deck").append(card.append(body.append(title, image, max)))
+
+
+
+                    }
+                  } 
+
+                });
+            }
+            $("#citySearch").on("click", function (event) {
+              event.preventDefault()
+              var searchVal = $(".searchField").val()
+              WeatherFunction(searchVal)
+
+            })
+            var searchHistory = window.localStorage.getItem("pastSearch") || []
+            if (searchHistory.length > 0) {
+              WeatherFunction(searchHistory[searchHistory.length - 1]);
+            }
+            for (var i = 0; i < searchHistory.length; i++) {
+              cityHistory(searchHistory[i]);
+            }
+
+
+          </script>
+
+          <div>
+
+            <div class="card-deck">
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script type="text/javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
 </body>
-<footer class ="fixed-bottom">
+<!--<footer class="fixed-bottom">-->
 
 </html>
